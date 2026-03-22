@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kb Contabilidad | Estrategia y Precisión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --dorado: #D4AF37; --negro: #0b0b0b; --gris-oscuro: #1a1a1a; --blanco: #ffffff; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--negro); color: var(--blanco); scroll-behavior: smooth; }
+        
+        /* Header */
+        .header { background: #000; padding: 15px 0; border-bottom: 1px solid #333; position: sticky; top: 0; z-index: 1000; }
+        .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .logo { display: flex; align-items: center; text-decoration: none; gap: 12px; }
+        .logo-img { height: 60px; width: auto; }
+        .logo-text { color: var(--dorado); font-weight: bold; font-size: 1.3rem; }
+        .nav-menu { display: flex; list-style: none; gap: 20px; padding: 0; }
+        .nav-link { color: var(--blanco); text-decoration: none; transition: 0.3s; }
+        .nav-link:hover { color: var(--dorado); }
+
+        /* Secciones */
+        section { padding: 80px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
+        h1 { font-size: 3rem; margin-bottom: 10px; }
+        h2 { color: var(--dorado); font-size: 2.2rem; margin-bottom: 30px; }
+
+        /* Servicios */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .service-card { background: var(--gris-oscuro); padding: 30px; border-radius: 10px; border: 1px solid #333; transition: 0.3s; }
+        .service-card:hover { border-color: var(--dorado); }
+
+        /* Formulario */
+        .form-container { background: var(--gris-oscuro); padding: 40px; border-radius: 15px; border: 1px solid #333; text-align: left; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: var(--dorado); }
+        input, select, textarea { width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 6px; box-sizing: border-box; }
+        .btn-enviar { background: var(--dorado); color: black; border: none; padding: 15px; font-weight: bold; width: 100%; border-radius: 6px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="nav">
+            <a href="/" class="logo">
+                <img src="img/logo.png" alt="Logo KB" class="logo-img">
+                <span class="logo-text">Contabilidad</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio">
+        <h1>Estrategia. Precisión. Crecimiento.</h1>
+        <p>Soluciones contables profesionales para tu negocio.</p>
+    </section>
+
+    <section id="servicios">
+        <h2>Servicios</h2>
+        <div class="services-grid">
+            <div class="service-card"><h3>Auditoría</h3><p>Exámenes detallados para tu tranquilidad financiera.</p></div>
+            <div class="service-card"><h3>Contabilidad</h3><p>Gestión integral y reportes precisos.</p></div>
+            <div class="service-card"><h3>Consultoría</h3><p>Asesoría estratégica para el crecimiento.</p></div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <h2>Canales de Atención</h2>
+        <div class="form-container">
+            <div style="text-align: center; margin-bottom: 35px; border-bottom: 1px solid #333; padding-bottom: 20px;">
+                <p style="font-size: 1.3rem; color: var(--dorado); margin-bottom: 15px;"><strong>KM Contabilidad</strong></p>
+                
+                <div style="margin-bottom: 15px;">
+                    <p style="margin: 5px 0;">📱 <strong>WhatsApp:</strong> <a href="https://wa.me/573134995760" style="color: white; text-decoration: none;">313 499 5760</a></p>
+                    <p style="color: #888; font-size: 0.9rem; margin-top: -5px;">(Atención exclusiva por WhatsApp)</p>
+                </div>
+
+                <p style="margin: 15px 0;">✉️ <strong>Correo:</strong> <a href="mailto:contacto@kmcontabilidad.com" style="color: white; text-decoration: none;">contacto@kmcontabilidad.com</a></p>
+                <p style="margin: 5px 0; color: #ccc;">📍 Bogotá, Colombia</p>
+            </div>
+
+<div style="text-align: center; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 20px;">
+    <p style="font-size: 1.3rem; color: #D4AF37; margin-bottom: 10px;"><strong>KM Contabilidad</strong></p>
+    
+    <p style="margin: 5px 0;">📱 <strong>WhatsApp:</strong> 
+        <a href="https://wa.me/573134995760" style="color: white; text-decoration: none;">313 499 5760</a>
+    </p>
+    <p style="color: #888; font-size: 0.9rem; margin-top: -5px;">(Atención exclusiva por WhatsApp)</p>
+
+    <p style="margin: 15px 0;">✉️ <strong>Correo:</strong> 
+        <a href="mailto:contacto@kmcontabilidad.com" style="color: white; text-decoration: none;">contacto@kmcontabilidad.com</a>
+    </p>
+</div>            <form>
+                <div class="form-group">
+                    <label>Nombre o Empresa</label>
+                    <input type="text" placeholder="Ej: Inversiones SAS" required>
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" placeholder="cliente@ejemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label>¿Cómo podemos asesorarte?</label>
+                    <textarea rows="4" placeholder="Escribe aquí tu consulta contable o tributaria..."></textarea>
+                </div>
+                <button type="submit" class="btn-enviar">Solicitar Asesoría</button>
+            </form>
+        </div>
+    </section>
+
+    <footer style="padding: 30px; text-align: center; color: #444; font-size: 0.8rem;">
+        <p>&copy; 2026 Kb Contabilidad - Precisión que genera confianza.</p>
+    </footer>
