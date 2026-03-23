@@ -3,111 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KB Contabilidad | Estrategia y Precisión</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>KB Contabilidad Estrategia y Precisión</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<style>
-:root { 
-    --dorado: #D4AF37; 
-    --negro: #0b0b0b; 
-    --gris-oscuro: #1a1a1a; 
-}
+    <style>
+        :root { 
+            --dorado: #D4AF37; 
+            --negro: #0b0b0b; 
+            --gris-oscuro: #1a1a1a; 
+            --blanco: #ffffff;
+        }
 
-html {
-    scroll-behavior: smooth;
-}
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--negro); color: var(--blanco); overflow-x: hidden; }
 
-section {
-    scroll-margin-top: 100px;
-}
+        /* --- LOADER --- */
+        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--negro); display: flex; justify-content: center; align-items: center; z-index: 9999; transition: 0.8s; }
+        .loader-logo { width: 150px; animation: pulse 2s infinite ease-in-out; filter: drop-shadow(0 0 10px var(--dorado)); }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.1); opacity: 1; } }
+        .loader-hidden { opacity: 0; visibility: hidden; }
 
-body { 
-    font-family: 'Inter', sans-serif; 
-    margin: 0; 
-    background-color: var(--negro); 
-    color: white;
-}
-        /* Header */
-        .header { background: #000; padding: 15px 0; border-bottom: 1px solid #333; position: sticky; top: 0; z-index: 1000; }
+        /* --- HEADER --- */
+        .header { background: rgba(0,0,0,0.9); padding: 10px 0; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #222; backdrop-filter: blur(10px); }
         .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        .logo { display: flex; align-items: center; text-decoration: none; gap: 12px; }
-        .logo-img { height: 200px; width: auto; }
-        .logo-text { color: var(--dorado); font-weight: bold; font-size: 1.3rem; }
-        .nav-menu { display: flex; list-style: none; gap: 20px; padding: 0; }
-        .nav-link { color: var(--blanco); text-decoration: none; transition: 0.3s; }
+        .logo-img { height: 125px; }
+        .nav-menu { display: flex; list-style: none; gap: 20px; }
+        .nav-link { color: #fff; text-decoration: none; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         .nav-link:hover { color: var(--dorado); }
 
-        /* Secciones */
-        section { padding: 80px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
-        h1 { font-size: 3rem; margin-bottom: 10px; }
-        h2 { color: var(--dorado); font-size: 2.2rem; margin-bottom: 30px; }
+        /* --- SECCIONES --- */
+        section { padding: 100px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
+        h1 { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 20px; }
+        h2 { color: var(--dorado); font-size: 2rem; text-transform: uppercase; margin-bottom: 40px; }
 
-        /* Servicios */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .service-card { background: var(--gris-oscuro); padding: 30px; border-radius: 10px; border: 1px solid #333; transition: 0.3s; }
-        .service-card:hover { border-color: var(--dorado); }
+        /* --- SERVICIOS --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-card { background: var(--gris-oscuro); padding: 40px; border-radius: 12px; border: 1px solid #222; transition: 0.3s; }
+        .service-card:hover { border-color: var(--dorado); transform: translateY(-5px); }
+        .btn-info { background: transparent; color: var(--dorado); border: 1px solid var(--dorado); padding: 10px 20px; cursor: pointer; margin-top: 15px; font-weight: bold; transition: 0.3s; }
+        .btn-info:hover { background: var(--dorado); color: #000; }
 
-        /* Formulario */
-        .form-container { background: var(--gris-oscuro); padding: 40px; border-radius: 15px; border: 1px solid #333; text-align: left; }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; color: var(--dorado); }
-        input, select, textarea { width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: white; border-radius: 6px; box-sizing: border-box; }
-        .btn-enviar { background: var(--dorado); color: black; border: none; padding: 15px; font-weight: bold; width: 100%; border-radius: 6px; cursor: pointer; }
-   /* EFECTOS KB */
-html { scroll-behavior: smooth; }
-section { scroll-margin-top: 100px; }
+        /* --- VENTANAS MODALES (INFO DE BOTONES) --- */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; }
+        .modal-content { background: var(--gris-oscuro); padding: 40px; border-radius: 15px; max-width: 500px; border: 1px solid var(--dorado); position: relative; text-align: left; }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--dorado); }
 
-#loader {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: #0b0b0b;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.8s ease, visibility 0.8s;
-}
-.loader-logo {
-    width: 150px;
-    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
-    animation: pulse 2s infinite ease-in-out;
-}
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.05); opacity: 1; }
-}
-.loader-hidden { opacity: 0; visibility: hidden; }
+        /* --- CONTACTO --- */
+        .form-container { background: var(--gris-oscuro); padding: 40px; border-radius: 20px; border: 1px solid #222; text-align: left; max-width: 600px; margin: 0 auto; }
+        .contact-info { text-align: center; margin-bottom: 40px; border-bottom: 1px solid #333; padding-bottom: 20px; }
+        .contact-link { color: var(--dorado); text-decoration: none; font-weight: bold; }
+        input, textarea { width: 100%; padding: 15px; background: #000; border: 1px solid #333; color: #fff; margin-bottom: 15px; border-radius: 5px; box-sizing: border-box; }
+        .btn-submit { background: var(--dorado); color: #000; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; letter-spacing: 1px; }
 
-.whatsapp-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 60px;
-    height: 60px;
-    background-color: #25d366;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    z-index: 1000;
-}
-.whatsapp-btn img { width: 35px; }
-   </style>
+        /* --- WHATSAPP --- */
+        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 1000; transition: 0.3s; }
+        .whatsapp-btn:hover { transform: scale(1.1); }
+    </style>
 </head>
 <body>
-<div id="loader">
-    <img src="img/logo.png" alt="KB Contabilidad" class="loader-logo">
-</div>
+
+    <div id="loader"><img src="img/logo.png" alt="Cargando..." class="loader-logo"></div>
+
     <header class="header">
         <nav class="nav">
-            <a href="/" class="logo">
-                <img src="img/logo.png" alt="Logo Kb Contabilidad" class="logo-img">
-                <span class="logo-text">Contabilidad</span>
-            </a>
+            <a href="#inicio"><img src="img/logo.png" alt="KB Contabilidad logo featuring gold upward arrow with bar chart and company tagline Estrategia. Precisión. Crecimiento" class="logo-img"></a>
             <ul class="nav-menu">
                 <li><a href="#inicio" class="nav-link">Inicio</a></li>
                 <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
@@ -118,89 +77,107 @@ section { scroll-margin-top: 100px; }
     </header>
 
     <section id="inicio">
-        <h1>Estrategia. Precisión. Crecimiento.</h1>
-        <p>Soluciones contables profesionales para tu negocio.</p>
+        <h1>ESTRATEGIA.<br>PRECISIÓN.<br><span style="color: var(--dorado);">CRECIMIENTO.</span></h1>
+        <p style="color: #888; font-size: 1.2rem;">Asesoría contable de alto nivel para el mercado colombiano.</p>
     </section>
-    <section id="nosotros" style="padding: 80px 20px; background-color: #0b0b0b; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 40px;">
-    <div style="flex: 1; max-width: 500px; text-align: center;">
-        <h2 style="color: #D4AF37; font-size: 2.5rem; margin-bottom: 20px;">Sobre Nosotros</h2>
-        <p style="color: #ccc; line-height: 1.8; font-size: 1.1rem;">
-            En <strong>KB Contabilidad</strong>, nos dedicamos a ofrecer soluciones financieras con <strong>Estrategia y Precisión</strong>. 
-            Nuestro objetivo es ser el aliado estratégico de las empresas en Colombia, garantizando una gestión contable ética y transparente para impulsar su crecimiento.
-        </p>
-    </div>
-    <div style="flex: 1; max-width: 350px; text-align: center;">
-        <img src="img/vantor.jpg.jpeg" alt="Vantor - Asesor Estratégico" style="width: 100%; height: auto;">
-        <h3 style="color: #fff; margin-top: 15px; letter-spacing: 2px;">VANTOR</h3>
-        <p style="color: #D4AF37; font-style: italic;">— Asesor Estratégico —</p>
-    </div>
-</section> center;">
-    <h2 style="color: #D4AF37; margin-bottom: 30px;">Canales de Atención</h2>
-    
-    <div style="max-width: 600px; margin: 0 auto; border: 1px solid #D4AF37; padding: 30px; border-radius: 15px;">
-        <p style="color: #fff; font-size: 1.2rem; margin-bottom: 15px;">
-            <strong>WhatsApp:</strong> <a href="https://wa.me/573134995760" style="color: #D4AF37; text-decoration: none;">313 499 5760</a>
-        </p>
-        <p style="color: #fff; font-size: 1.2rem; margin-bottom: 0;">
-            <strong>Correo:</strong> <a href="mailto:contacto@kbcontabilidad.com" style="color: #D4AF37; text-decoration: none;">contacto@kbcontabilidad.com</a>
-        </p>
-        <p style="color: #888; margin-top: 20px;">Bogotá, Colombia</p>
-    </div>
-</section>
-                </div>
 
-                <p style="margin: 15px 0;">✉️ <strong>Correo:</strong> <a href="mailto:contacto@kmcontabilidad.com" style="color: white; text-decoration: none;">contacto@kmcontabilidad.com</a></p>
-                <p style="margin: 5px 0; color: #ccc;">📍 Bogotá, Colombia</p>
+    <section id="nosotros" style="background: #050505; max-width: 100%;">
+        <div style="max-width: 1000px; margin: 0 auto; display: flex; align-items: center; flex-wrap: wrap; gap: 40px; justify-content: center;">
+            <div style="flex: 1; text-align: left; min-width: 300px;">
+                <h2>Sobre Nosotros</h2>
+                <p style="line-height: 1.8; color: #ccc;">En <strong>KB Contabilidad</strong>, somos especialistas en brindar claridad financiera. Trabajamos bajo estándares NIIF y normativas DIAN para asegurar que su empresa crezca sobre cimientos sólidos y legales.</p>
             </div>
+            <div style="flex: 0 1 300px;">
+                <img src="img/vantor.jpg.jpeg" alt="Vantor" style="width: 60%; border-radius: 15px; border: 1px solid var(--dorado);">
+                <p style="color: var(--dorado); font-size: 0.8rem; margin-top: 10px; letter-spacing: 2px;">Vantor — ASESOR ESTRATÉGICO</p>
+            </div>
+        </div>
+    </section>
 
-<div style="text-align: center; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 20px;">
-    <p style="font-size: 1.3rem; color: #D4AF37; margin-bottom: 10px;"><strong>Kb Contabilidad</strong></p>
-    
-    <p style="margin: 5px 0;">📱 <strong>WhatsApp:</strong> 
-        <a href="https://wa.me/573134995760" style="color: white; text-decoration: none;">313 499 5760</a>
-    </p>
-    <p style="color: #888; font-size: 0.9rem; margin-top: -5px;">(Atención exclusiva por WhatsApp)</p>
+    <section id="servicios">
+        <h2>Servicios Especializados</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Auditoría</h3>
+                <p>Garantice la transparencia de sus estados financieros.</p>
+                <button class="btn-info" onclick="openModal('modal-auditoria')">Ver Detalles</button>
+            </div>
+            <div class="service-card">
+                <h3>Impuestos</h3>
+                <p>Planeación tributaria para evitar riesgos ante la DIAN.</p>
+                <button class="btn-info" onclick="openModal('modal-impuestos')">Ver Detalles</button>
+            </div>
+            <div class="service-card">
+                <h3>Consultoría</h3>
+                <p>Asesoría integral para la toma de decisiones.</p>
+                <button class="btn-info" onclick="openModal('modal-consultoria')">Ver Detalles</button>
+            </div>
+        </div>
+    </section>
 
-    <p style="margin: 15px 0;">✉️ <strong>Correo:</strong> 
-        <a href="mailto:contacto@kbcontabilidad.com" style="color: white; text-decoration: none;">contacto@kbcontabilidad.com</a>
-    </p>
-</div>            <form>
-                <div class="form-group">
-                    <label>Nombre o Empresa</label>
-                    <input type="text" placeholder="Ej: Inversiones SAS" required>
-                </div>
-                <div class="form-group">
-                    <label>Correo Electrónico</label>
-                    <input type="email" placeholder="cliente@ejemplo.com" required>
-                </div>
-                <div class="form-group">
-                    <label>¿Cómo podemos asesorarte?</label>
-                    <textarea rows="4" placeholder="Escribe aquí tu consulta contable o tributaria..."></textarea>
-                </div>
-                <button type="submit" class="btn-enviar">Solicitar Asesoría</button>
+    <div id="modal-auditoria" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-auditoria')">&times;</span>
+            <h3 style="color: var(--dorado);">Auditoría e Interventoría</h3>
+            <p>Nuestro servicio incluye: Examen detallado de registros contables, verificación de cumplimiento de normas NIIF, auditoría externa para socios y reportes de control interno para detectar fraudes o errores.</p>
+        </div>
+    </div>
+
+    <div id="modal-impuestos" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-impuestos')">&times;</span>
+            <h3 style="color: var(--dorado);">Gestión de Impuestos</h3>
+            <p>Nos encargamos de: Presentación de IVA, Retención en la fuente, ICA, Declaración de Renta, y planeación tributaria anual para optimizar legalmente el pago de sus tributos.</p>
+        </div>
+    </div>
+
+    <div id="modal-consultoria" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-consultoria')">&times;</span>
+            <h3 style="color: var(--dorado);">Consultoría y Outsourcing</h3>
+            <p>Servicios de: Teneduría de libros, liquidación de nómina especializada, creación de empresas en RUES y asesoría permanente en temas financieros estratégicos.</p>
+        </div>
+    </div>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <div class="form-container">
+            <div class="contact-info">
+                <p>📱 WhatsApp: <a href="https://wa.me/573134995760" class="contact-link">313 499 5760</a></p>
+                <p>✉️ Correo: <a href="mailto:contacto@kbcontabilidad.com" class="contact-link">contacto@kbcontabilidad.com</a></p>
+                <p style="color: #666; font-size: 0.8rem; margin-top: 10px;">Bogotá, Colombia</p>
+            </div>
+            <form action="https://formsubmit.co/contacto@kbcontabilidad.com" method="POST">
+                <input type="text" name="empresa" placeholder="Nombre o Empresa" required>
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+                <textarea name="mensaje" rows="4" placeholder="¿En qué podemos asesorarle?" required></textarea>
+                <button type="submit" class="btn-submit">SOLICITAR ASESORÍA</button>
             </form>
         </div>
     </section>
 
-    <footer style="padding: 30px; text-align: center; color: #444; font-size: 0.8rem;">
-        <p>&copy; 2026 Kb Contabilidad - Precisión que genera confianza.</p>
+    <footer style="padding: 40px; text-align: center; color: #444; font-size: 0.8rem;">
+        &copy; 2026 KB CONTABILIDAD - PRECISIÓN QUE GENERA CONFIANZA.
     </footer>
-<script>
-        window.addEventListener("load", function() {
-            // Esto quita la pantalla negra después de 1.5 segundos
-            setTimeout(() => {
-                const loader = document.getElementById("loader");
-                if(loader) {
-                    loader.classList.add("loader-hidden");
-                }
-            }, 1500);
+
+    <script>
+        // Loader
+        window.addEventListener("load", () => {
+            setTimeout(() => document.getElementById("loader").classList.add("loader-hidden"), 1000);
         });
+
+        // Funciones para Modales
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        
+        // Cerrar al hacer clic fuera del cuadro
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') { event.target.style.display = "none"; }
+        }
     </script>
 
-    <a href="https://wa.me/573134995760?text=Hola%20KB,%20necesito%20asesoría" 
-       class="whatsapp-btn" 
-       target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 35px;">
+    <a href="https://wa.me/573134995760?text=Hola%20KB,%20necesito%20asesoría" class="whatsapp-btn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" style="width: 30px;">
     </a>
 
 </body>
