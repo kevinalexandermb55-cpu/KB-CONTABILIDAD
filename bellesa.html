@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Atenea - Centro de Belleza y Renovación. Especialistas en cuidado capilar y estética integral.">
+    <title>Atenea | Centro de Belleza y Renovación</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --rosa-principal: #d4a3a3;
+            --rosa-suave: #f9f1f1;
+            --dorado: #c5a059;
+            --texto-oscuro: #4a4a4a;
+            --blanco: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--texto-oscuro);
+            background-color: var(--blanco);
+            scroll-behavior: smooth;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: var(--blanco);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--rosa-principal);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links { list-style: none; display: flex; }
+        .nav-links li { margin-left: 2rem; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--texto-oscuro);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--dorado); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
+                        url('https://images.unsplash.com/photo-1560750588-73207b1ef5b8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--rosa-principal);
+            margin-bottom: 1rem;
+        }
+
+        .btn-principal {
+            padding: 12px 30px;
+            background-color: var(--dorado);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .btn-principal:hover { background-color: var(--rosa-principal); }
+
+        /* --- SERVICIOS --- */
+        .section-container { padding: 80px 10%; text-align: center; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 3rem; }
+
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            padding: 40px;
+            background: var(--rosa-suave);
+            border-radius: 20px;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .card:hover { 
+            transform: translateY(-10px); 
+            border-color: var(--dorado);
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .card i { font-size: 2.5rem; color: var(--dorado); margin-bottom: 1.5rem; }
+
+        /* --- WHATSAPP FLOTANTE --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            text-decoration: none;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #f4f4f4;
+            padding: 50px 10% 20px;
+            text-align: center;
+        }
+        .social-icons a { font-size: 1.5rem; margin: 0 15px; color: var(--rosa-principal); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Idealmente aquí usarías un menú hamburguesa */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div id="loader"><img src="img/atenea.png" alt="Logo Atenea" width="140px"></div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+    <header class="hero" id="inicio">
+        <h1>Renueva tu esencia</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Especialistas en recuperación capilar y cuidado integral.</p>
+        <a href="https://wa.me/3134995760" class="btn-principal">Reserva tu cita</a>
+    </header>
+
+    <main class="section-container" id="servicios">
+        <h2 class="section-title">Nuestros Servicios Exclusivos</h2>
+        <div class="servicios-grid">
+            <div class="card">
+                <i class="fas fa-magic"></i>
+                <h3>Recuperación Capilar</h3>
+                <p>Devolvemos la vida y el brillo a tu cabello con tecnología de vanguardia.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-spa"></i>
+                <h3>Tratamientos Faciales</h3>
+                <p>Limpiezas profundas y masajes hidratantes para un rostro radiante.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-gem"></i>
+                <h3>Manicura & Pedicura</h3>
+                <p>Cuidado meticuloso y diseños que reflejan tu personalidad.</p>
+            </div>
+        </div>
+    </main>
+
+    <section class="section-container" id="contacto" style="background: var(--rosa-suave);">
+        <h2 class="section-title">Visítanos</h2>
+        <p><i class="fas fa-map-marker-alt"></i> Ubicación Prime, Ciudad de Bogotá</p>
+        <p><i class="fas fa-clock"></i> Lunes a Sábado: 9:00 AM - 7:00 PM</p>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+        <p style="margin-top: 20px;">&copy; 2026 Atenea - Centro de Belleza y Renovación</p>
+    </footer>
+
+    <a href="https://wa.me/3134995760?text=Hola%20Atenea!%20quisiera+agendar+una+cita" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
