@@ -3,181 +3,849 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KB Contabilidad Estrategia y Precisión</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+    <title>Línea de Cuidado Natural - Pomadas y Cremas</title>
     <style>
-        :root { 
-            --dorado: #D4AF37; 
-            --negro: #0b0b0b; 
-            --gris-oscuro: #1a1a1a; 
+        /* ================================================================= */
+        /* ESTILOS GLOBALES Y VARIABLES DE TU DISEÑO                         */
+        /* ================================================================= */
+        :root {
+            --verde-pomada: #22c55e;
+            --azul-crema: #0ea5e9;
+            --texto-oscuro: #0f172a;
+            --texto-suave: #475569;
+            --fondo-gris: #f8fafc;
             --blanco: #ffffff;
+            --naranja-boton: #eab308;
+            --naranja-hover: #ca8a04;
         }
 
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--negro); color: var(--blanco); overflow-x: hidden; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--blanco);
+            color: var(--texto-oscuro);
+            scroll-behavior: smooth;
+        }
 
-        /* --- LOADER --- */
-        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--negro); display: flex; justify-content: center; align-items: center; z-index: 9999; transition: 0.8s; }
-        .loader-logo { width: 150px; animation: pulse 2s infinite ease-in-out; filter: drop-shadow(0 0 10px var(--dorado)); }
-        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.1); opacity: 1; } }
-        .loader-hidden { opacity: 0; visibility: hidden; }
+        /* ================================================================= */
+        /* NAVBAR MINIMALISTA REAL CON MENÚ HAMBURGUESA                      */
+        /* ================================================================= */
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: var(--blanco);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
 
-        /* --- HEADER --- */
-        .header { background: rgba(0,0,0,0.9); padding: 10px 0; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #222; backdrop-filter: blur(10px); }
-        .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        .logo-img { height: 170px; }
-        .nav-menu { display: flex; list-style: none; gap: 20px; }
-        .nav-link { color: #fff; text-decoration: none; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-        .nav-link:hover { color: var(--dorado); }
+        .brand-logo-container img {
+            height: 50px;
+            width: auto;
+        }
 
-        /* --- SECCIONES --- */
-        section { scroll-margin-top: 110px; padding: 100px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
-        h1 { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 20px; }
-        h2 { color: var(--dorado); font-size: 2rem; text-transform: uppercase; margin-bottom: 40px; }
-        /* --- SERVICIOS --- */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .service-card { background: var(--gris-oscuro); padding: 40px; border-radius: 12px; border: 1px solid #222; transition: 0.3s; }
-        .service-card:hover { border-color: var(--dorado); transform: translateY(-5px); }
-        .btn-info { background: transparent; color: var(--dorado); border: 1px solid var(--dorado); padding: 10px 20px; cursor: pointer; margin-top: 15px; font-weight: bold; transition: 0.3s; }
-        .btn-info:hover { background: var(--dorado); color: #000; }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
 
-        /* --- VENTANAS MODALES (INFO DE BOTONES) --- */
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; }
-        .modal-content { background: var(--gris-oscuro); padding: 40px; border-radius: 15px; max-width: 500px; border: 1px solid var(--dorado); position: relative; text-align: left; }
-        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--dorado); }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--texto-suave);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
 
-        /* --- CONTACTO --- */
-        .form-container { background: var(--gris-oscuro); padding: 40px; border-radius: 20px; border: 1px solid #222; text-align: left; max-width: 600px; margin: 0 auto; }
-        .contact-info { text-align: center; margin-bottom: 40px; border-bottom: 1px solid #333; padding-bottom: 20px; }
-        .contact-link { color: var(--dorado); text-decoration: none; font-weight: bold; }
-        input, textarea { width: 100%; padding: 15px; background: #000; border: 1px solid #333; color: #fff; margin-bottom: 15px; border-radius: 5px; box-sizing: border-box; }
-        .btn-submit { background: var(--dorado); color: #000; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; letter-spacing: 1px; }
+        .nav-menu a:hover {
+            color: var(--texto-oscuro);
+        }
 
-        /* --- WHATSAPP --- */
-        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 1000; transition: 0.3s; }
-        .whatsapp-btn:hover { transform: scale(1.1); }
+        .btn-hacer-pedido-nav {
+            background-color: var(--texto-oscuro);
+            color: var(--blanco) !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            transition: background 0.3s !important;
+        }
+
+        .btn-hacer-pedido-nav:hover {
+            background-color: #334155;
+        }
+
+        .menu-hamburger-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1100;
+        }
+
+        .menu-hamburger-btn span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--texto-oscuro);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-hamburger-btn.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .menu-hamburger-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-hamburger-btn.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* ================================================================= */
+        /* HERO / INTRODUCCIÓN REAL                                          */
+        /* ================================================================= */
+        .hero-section {
+            text-align: center;
+            padding: 80px 20px 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-section h1 {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--texto-oscuro);
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 17px;
+            color: var(--texto-suave);
+            line-height: 1.6;
+            margin-bottom: 50px;
+        }
+
+        .arcos-categorias {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .arco-item {
+            text-align: center;
+            position: relative;
+            padding-top: 20px;
+        }
+
+        .arco-linea {
+            height: 4px;
+            border-radius: 10px 10px 0 0;
+            width: 100%;
+            margin-bottom: 25px;
+        }
+
+        .arco-linea.verde { background: linear-gradient(90deg, transparent, var(--verde-pomada), transparent); }
+        .arco-linea.azul { background: linear-gradient(90deg, transparent, var(--azul-crema), transparent); }
+
+        .arco-item span {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+            background-color: #f1f5f9;
+            padding: 6px 16px;
+            border-radius: 50px;
+        }
+
+        /* ================================================================= */
+        /* SECCIÓN PRODUCTOS DETALLADOS REAL                                  */
+        /* ================================================================= */
+        .seccion-productos {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .columna-producto {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-imagen-placeholder {
+            width: 100%;
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .preview-imagen-placeholder img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .columna-producto h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+
+        .precio-rango {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--verde-pomada);
+            margin-bottom: 8px;
+        }
+
+        .sello-certificado {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--azul-crema);
+            margin-bottom: 8px;
+        }
+
+        .unidad-tag {
+            font-size: 14px;
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        .descripcion-corta {
+            color: var(--texto-suave);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .lista-caracteristicas {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 45px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .lista-caracteristicas li {
+            display: grid;
+            grid-template-columns: 30px 140px 1fr;
+            align-items: start;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .check-icon {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .columna-producto.verde-style .check-icon { color: var(--verde-pomada); }
+        .columna-producto.azul-style .check-icon { color: var(--azul-crema); }
+
+        .feature-title {
+            font-weight: 700;
+            color: var(--texto-oscuro);
+        }
+
+        .feature-desc {
+            color: var(--texto-suave);
+        }
+
+        .btn-solicitar {
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            transition: opacity 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-solicitar:hover { opacity: 0.9; }
+        .btn-solicitar.verde { background-color: #22c55e20; color: #16a34a; }
+        .btn-solicitar.azul { background-color: #0ea5e920; color: #0284c7; }
+
+        /* ================================================================= */
+        /* COMPROMISOS COMERCIALES REAL                                      */
+        /* ================================================================= */
+        .seccion-compromisos {
+            background-color: var(--blanco);
+            padding: 80px 8%;
+            text-align: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .seccion-compromisos h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+
+        .grid-compromisos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .compromiso-card {
+            text-align: left;
+            padding: 10px;
+        }
+
+        .compromiso-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .compromiso-card p {
+            color: var(--texto-suave);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ================================================================= */
+        /* PREGUNTAS FRECUENTES REAL                                         */
+        /* ================================================================= */
+        .seccion-faq {
+            padding: 60px 8% 100px 8%;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .seccion-faq h2 {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-item p {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--texto-oscuro);
+        }
+
+        .faq-icon {
+            color: var(--verde-pomada);
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* ================================================================= */
+        /* CONTEXTO DEL FORMULARIO PLANO INTEGRADO CON SELECTOR DE ASESORAS  */
+        /* ================================================================= */
+        .bloque-formulario-contenedor {
+            max-width: 1100px;
+            margin: 0 auto 120px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 42% 58%;
+        }
+
+        .panel-info-negro {
+            background-color: #0b111e; /* Color oscuro exacto de tu diseño */
+            color: var(--blanco);
+            padding: 60px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+        .panel-info-negro h2 {
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .panel-info-negro p {
+            color: #94a3b8;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* Botón de enlace lateral con el logo vectorial de WhatsApp */
+        .btn-whatsapp-lateral {
+            background-color: #22c55e;
+            color: var(--blanco);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: fit-content;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn-whatsapp-lateral:hover { background-color: #16a34a; }
+
+        .whatsapp-icon-svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .panel-formulario-blanco {
+            background-color: #f8fafc;
+            padding: 60px 50px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-sizing: border-box;
+        }
+
+        .panel-formulario-blanco h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 35px;
+        }
+
+        .form-grupo {
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-grupo label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--texto-oscuro);
+        }
+
+        .form-grupo input, .form-grupo select, .form-grupo textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: var(--blanco);
+            box-sizing: border-box;
+            color: var(--texto-oscuro);
+        }
+
+        .form-grupo input::placeholder, .form-grupo textarea::placeholder {
+            color: #cbd5e1;
+        }
+
+        .form-grupo input:focus, .form-grupo select:focus, .form-grupo textarea:focus {
+            border-color: #94a3b8;
+            outline: none;
+        }
+
+        /* DISEÑO DE BOTONES DE OPCIÓN (RADIO BOXES) PARA LAS VENDEDORAS */
+        .selector-vendedora-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .vendedora-radio-box {
+            border: 1px solid #e2e8f0;
+            background-color: var(--blanco);
+            padding: 12px 8px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .vendedora-radio-box input {
+            width: auto;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .vendedora-radio-box span {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--texto-suave);
+        }
+
+        /* Botón de envío plano ocre de tu captura */
+        .btn-enviar-solicitud {
+            background-color: #db9a59; 
+            color: var(--blanco);
+            border: none;
+            width: 100%;
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .btn-enviar-solicitud:hover { background-color: #c48245; }
+
+        .whatsapp-float-fixed {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            z-index: 9999;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .whatsapp-float-fixed:hover { transform: scale(1.08); }
+        .whatsapp-float-fixed svg { width: 30px; height: 30px; fill: white; }
+
+        /* ================================================================= */
+        /* REGLAS RESPONSIVE                                                 */
+        /* ================================================================= */
+        @media (max-width: 900px) {
+            .header-nav { padding: 15px 5%; }
+            .menu-hamburger-btn { display: flex; }
+            .nav-menu {
+                position: fixed;
+                top: 85px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 85px);
+                background-color: var(--blanco);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 40px;
+                gap: 30px;
+                transition: left 0.4s ease;
+                z-index: 1000;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+            }
+            .nav-menu.active { left: 0; }
+            .nav-menu a { font-size: 18px; width: 80%; text-align: center; padding: 10px 0; }
+            .btn-hacer-pedido-nav { width: 70% !important; }
+            .seccion-productos, .bloque-formulario-contenedor, .arcos-categorias { grid-template-columns: 1fr; gap: 0px; }
+            .panel-info-negro { border-radius: 20px 20px 0 0; padding: 40px 30px; }
+            .panel-formulario-blanco { border-radius: 0 0 20px 20px; padding: 40px 30px; }
+            .hero-section h1 { font-size: 30px; }
+            .selector-vendedora-container { grid-template-columns: 1fr; gap: 10px; }
+            .lista-caracteristicas li { grid-template-columns: 30px 1fr; gap: 5px; }
+            .feature-title { grid-column: 2; }
+            .feature-desc { grid-column: 2; margin-top: 2px; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="loader"><img src="img/logo.png" alt="Cargando..." class="loader-logo"></div>
+    <header class="header-nav">
+        <div class="brand-logo-container">
+            <img src="img/careskin.png" alt="CareSkin Logo">
+        </div>
+        
+        <button class="menu-hamburger-btn" id="hamburgerBtn" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-    <header class="header">
-        <nav class="nav">
-            <a href="#inicio"><img src="img/logo.png" alt="KB Contabilidad logo featuring gold upward arrow with bar chart and company tagline Estrategia. Precisión. Crecimiento" class="logo-img"></a>
-            <ul class="nav-menu">
-                <li><a href="#inicio" class="nav-link">Inicio</a></li>
-                <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-                <li><a href="#servicios" class="nav-link">Servicios</a></li>
-                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        <nav>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#garantias">Garantías</a></li>
+                <li><a href="#ayuda">Ayuda</a></li>
+                <li><a href="#pedido" class="btn-hacer-pedido-nav">Hacer Pedido</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="inicio">
-        <h1>ESTRATEGIA.<br>PRECISIÓN.<br><span style="color: var(--dorado);">CRECIMIENTO.</span></h1>
-        <p style="color: #888; font-size: 1.2rem;">Asesoría contable de alto nivel para el mercado colombiano.</p>
-    </section>
-
-    <section id="nosotros" style="background: #050505; max-width: 100%;">
-        <div style="max-width: 1000px; margin: 0 auto; display: flex; align-items: center; flex-wrap: wrap; gap: 40px; justify-content: center;">
-            <div style="flex: 1; text-align: left; min-width: 300px;">
-                <h2>Sobre Nosotros</h2>
-                <p style="line-height: 1.8; color: #ccc;">En <strong>KB Contabilidad</strong>, somos especialistas en brindar claridad financiera. Trabajamos bajo estándares NIIF y normativas DIAN para asegurar que su empresa crezca sobre cimientos sólidos y legales.</p>
+    <section class="hero-section" id="inicio">
+        <h1>Soluciones Naturales y Cuidado Especializado</h1>
+        <p>Descubre el balance óptimo entre el alivio terapéutico tradicional y la protección dermatológica más avanzada para la salud familiar.</p>
+        
+        <div class="arcos-categorias">
+            <div class="arco-item">
+                <div class="arco-linea verde"></div>
+                <span>Alivio Terapéutico</span>
             </div>
-            <div style="flex: 0 1 300px;">
-                <img src="img/vantor.png.jpeg" alt="Vantor" style="width: 60%; border-radius: 15px; border: 1px solid var(--dorado);">
-                <p style="color: var(--dorado); font-size: 0.8rem; margin-top: 10px; letter-spacing: 2px;">Vantor — ASESOR ESTRATÉGICO</p>
+            <div class="arco-item">
+                <div class="arco-linea azul"></div>
+                <span>Cuidado Infantil</span>
             </div>
         </div>
     </section>
 
-    <section id="servicios">
-        <h2>Servicios Especializados</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>Auditoría</h3>
-                <p>Garantice la transparencia de sus estados financieros.</p>
-                <button class="btn-info" onclick="openModal('modal-auditoria')">Ver Detalles</button>
+    <main class="seccion-productos" id="productos">
+        
+        <div class="columna-producto verde-style">
+            <div class="preview-imagen-placeholder">
+                <img src="img/adultos.png" alt="Pomada Verde">
             </div>
-            <div class="service-card">
-                <h3>Impuestos</h3>
-                <p>Planeación tributaria para evitar riesgos ante la DIAN.</p>
-                <button class="btn-info" onclick="openModal('modal-impuestos')">Ver Detalles</button>
+            <h2>Pomada Verde</h2>
+            <div class="precio-rango">$10.000 <span class="unidad-tag">/ Unidad</span></div>
+            <p class="descripcion-corta">Ungüento de origen artesanal y herbolario, de la línea "El Indio Motilón", consolidado para mitigar dolores físicos agudos.</p>
+            
+            <ul class="lista-caracteristicas">
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span class="feature-title">Tratamiento del Dolor:</span>
+                    <span class="feature-desc">Especial para afecciones musculares, articulares, artritis, golpes, rodilla y columna.</span>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span class="feature-title">Base Botánica Activa:</span>
+                    <span class="feature-desc">Formulado con extractos naturales concentrados de coca, cannabis (marihuana) y árnica.</span>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span class="feature-title">Masajes y Bienestar:</span>
+                    <span class="feature-desc">Altamente eficaz contra calambres, tortícolis y control de venas várices.</span>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span class="feature-title">Restricción:</span>
+                    <span class="feature-desc">Seguro para toda la familia a excepción estricta de bebés.</span>
+                </li>
+            </ul>
+            
+            <button class="btn-solicitar verde" onclick="autocompletarProducto('Pomada Verde')">Solicitar Pomada</button>
+        </div>
+
+        <div class="columna-producto azul-style">
+            <div class="preview-imagen-placeholder">
+                <img src="img/bebe.png" alt="Crema Humectante Piel de Ángel">
             </div>
-            <div class="service-card">
-                <h3>Consultoría</h3>
-                <p>Asesoría integral para la toma de decisiones.</p>
-                <button class="btn-info" onclick="openModal('modal-consultoria')">Ver Detalles</button>
+            <h2>Piel de Ángel</h2>
+            <div class="sello-certificado">$5.000 <span class="unidad-tag">/ Uso Diario</span></div>
+            <p class="descripcion-corta">Crema humectante de alta fidelidad formulada específicamente para hidratar y blindar la barrera cutánea infantil.</p>
+            
+            <ul class="lista-caracteristicas">
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span class="feature-title">Protección Antirritación:</span>
+                    <span class="feature-desc">Previene activamente la pañalitis, enrojecimientos y la resequedad por fricción.</span>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span class="feature-title">Dermatológicamente Segura:</span>
+                    <span class="feature-desc">Componentes sumamente suaves adaptados a las pieles más finas y sensibles.</span>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span class="feature-title">Fórmula pH Balanceado:</span>
+                    <span class="feature-desc">Mantiene la acidez natural de la piel del bebé previniendo brotes o alergias.</span>
+                </li>
+                <li>
+                    <span class="check-icon">✓</span>
+                    <span class="feature-title">Higiene Diaria:</span>
+                    <span class="feature-desc">Aporta máxima suavidad y confort en cada cambio de pañal o baño.</span>
+                </li>
+            </ul>
+            
+            <button class="btn-solicitar azul" onclick="autocompletarProducto('Piel de Ángel')">Solicitar Crema Infantil</button>
+        </div>
+
+    </main>
+
+    <section class="seccion-compromisos" id="garantias">
+        <h2>Nuestros Compromisos Comerciales</h2>
+        <div class="grid-compromisos">
+            <div class="compromiso-card">
+                <h3>Garantía de Calidad</h3>
+                <p>Nuestros procesos productivos priorizan estándares de control rigurosos para ofrecer productos eficaces y estables.</p>
+            </div>
+            <div class="compromiso-card">
+                <h3>Distribución Nacional</h3>
+                <p>Implementamos logística optimizada con el beneficio exclusivo de envíos completamente gratuitos en compras mayoristas.</p>
+            </div>
+            <div class="compromiso-card">
+                <h3>Atención Inmediata</h3>
+                <p>Establecemos canales de comunicación directa y soporte virtual permanente (WhatsApp) para resolver solicitudes al instante.</p>
             </div>
         </div>
     </section>
 
-    <div id="modal-auditoria" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-auditoria')">&times;</span>
-            <h3 style="color: var(--dorado);">Auditoría e Interventoría</h3>
-            <p>Nuestro servicio incluye: Examen detallado de registros contables, verificación de cumplimiento de normas NIIF, auditoría externa para socios y reportes de control interno para detectar fraudes o errores.</p>
+    <section class="seccion-faq" id="ayuda">
+        <h2>Preguntas Frecuentes</h2>
+        <div class="faq-item">
+            <p>¿Qué restricciones de uso tiene la Pomada Verde?</p>
+            <span class="faq-icon">+</span>
         </div>
-    </div>
-
-    <div id="modal-impuestos" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-impuestos')">&times;</span>
-            <h3 style="color: var(--dorado);">Gestión de Impuestos</h3>
-            <p>Nos encargamos de: Presentación de IVA, Retención en la fuente, ICA, Declaración de Renta, y planeación tributaria anual para optimizar legalmente el pago de sus tributos.</p>
+        <div class="faq-item">
+            <p>¿Cuál es el beneficio del pH balanceado en Piel de Ángel?</p>
+            <span class="faq-icon">+</span>
         </div>
-    </div>
-
-    <div id="modal-consultoria" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-consultoria')">&times;</span>
-            <h3 style="color: var(--dorado);">Consultoría y Outsourcing</h3>
-            <p>Servicios de: Teneduría de libros, liquidación de nómina especializada, creación de empresas en RUES y asesoría permanente en temas financieros estratégicos.</p>
+        <div class="faq-item">
+            <p>Cómo se gestionan las entregas y compras?</p>
+            <span class="faq-icon">+</span>
         </div>
-    </div>
+    </section>
 
-    <section id="contacto">
-        <h2>Contacto</h2>
-        <div class="form-container">
-            <div class="contact-info">
-                <p>📱 WhatsApp: <a href="https://wa.me/573134995760" class="contact-link">313 499 5760</a></p>
-                <p>✉️ Correo: <a href="mailto:acesoria@kbcontabilidad.com" class="contact-link">KBasesoríacontab@gmail.com</a></p>
-                <p style="color: #666; font-size: 0.8rem; margin-top: 10px;">Bogotá, Colombia</p>
+    <section class="bloque-formulario-contenedor" id="pedido">
+        
+        <div class="panel-info-negro">
+            <div>
+                <h2>¿Deseas gestionar un pedido?</h2>
+                <p>Conéctate de manera directa con nuestro equipo de atención corporativa para agendar despachos, consultar cotizaciones mayoristas o recibir asesoría personalizada.</p>
             </div>
-            <form action="https://formsubmit.co/KBasesoríacontab@gmail.com" method="POST">
-                <input type="text" name="empresa" placeholder="Nombre o Empresa" required>
-                <input type="email" name="email" placeholder="Correo electrónico" required>
-                <textarea name="mensaje" rows="4" placeholder="¿En qué podemos asesorarle?" required></textarea>
-                <button type="submit" class="btn-submit">SOLICITAR ASESORÍA</button>
+            <a href="https://wa.me/573143248100?text=Hola,%20solicito%20información%20sobre%20los%20productos." class="btn-whatsapp-lateral" target="_blank">
+                <svg class="whatsapp-icon-svg" viewBox="0 0 24 24">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.846c1.66.986 3.298 1.492 4.761 1.493 5.433 0 9.85-4.332 9.853-9.65.001-2.577-1.003-5.001-2.83-6.829-.387-.387-.82-.733-1.292-1.033C15.334 2.115 13.694 1.77 12.007 1.77c-5.435 0-9.853 4.332-9.856 9.651-.001 1.517.361 2.99 1.05 4.298L2.17 21.73l6.115-1.59-.238.113zM16.92 14.73c-.265-.133-1.57-.775-1.814-.863-.243-.089-.42-.133-.596.133-.177.266-.685.863-.84.1.043-.156.177-.31.353-.532.176-.222.176-.377.089-.533-.089-.155-.596-1.442-.818-1.974-.216-.519-.434-.449-.596-.457-.154-.008-.332-.01-.51-.01-.177 0-.465.067-.708.333-.243.266-.93.909-.93 2.217s.952 2.572 1.084 2.749c.133.177 1.874 2.861 4.539 4.01.634.273 1.13.436 1.516.559.637.203 1.216.174 1.674.106.51-.076 1.57-.642 1.791-1.262.221-.619.221-1.151.155-1.262-.067-.11-.244-.194-.51-.327z"/>
+                </svg>
+                Contactar vía WhatsApp
+            </a>
+        </div>
+
+        <div class="panel-formulario-blanco">
+            <h3>Formulario de Solicitud</h3>
+            
+            <form id="formularioEnvio" onsubmit="procesarPedidoWhatsApp(event)">
+                
+                <div class="form-grupo">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="nombreInput" placeholder="Ej. Liliana Medina" required>
+                </div>
+
+                <div class="form-grupo">
+                    <label>Selecciona el Producto</label>
+                    <select id="productoSelect" required>
+                        <option value="" disabled selected>-- Elige una opción --</option>
+                        <option value="Pomada Verde">Pomada Verde</option>
+                        <option value="Piel de Ángel">Piel de Ángel</option>
+                    </select>
+                </div>
+
+                <div class="form-grupo">
+                    <label>Asesora de Atención</label>
+                    <div class="selector-vendedora-container">
+                        <label class="vendedora-radio-box">
+                            <input type="radio" name="vendedora" value="Angélica" checked>
+                            <span>Angélica</span>
+                        </label>
+                        <label class="vendedora-radio-box">
+                            <input type="radio" name="vendedora" value="Liliana">
+                            <span>Liliana</span>
+                        </label>
+                        <label class="vendedora-radio-box">
+                            <input type="radio" name="vendedora" value="Valery">
+                            <span>Valery</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-grupo">
+                    <label>Mensaje o Detalles de Envío</label>
+                    <textarea id="detallesInput" rows="4" placeholder="Ingresa tus inquietudes o dirección exacta de entrega..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-enviar-solicitud">Enviar Solicitud Oficial</button>
             </form>
         </div>
+
     </section>
 
-    <footer style="padding: 40px; text-align: center; color: #444; font-size: 0.8rem;">
-        &copy; 2026 KB CONTABILIDAD - PRECISIÓN QUE GENERA CONFIANZA.
-    </footer>
+    <a href="https://wa.me/573143248100?text=Hola,%20vengo%20de%20la%20página%20web%20y%20quiero%20hacer%20una%20consulta." class="whatsapp-float-fixed" target="_blank">
+        <svg viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.846c1.66.986 3.298 1.492 4.761 1.493 5.433 0 9.85-4.332 9.853-9.65.001-2.577-1.003-5.001-2.83-6.829-.387-.387-.82-.733-1.292-1.033C15.334 2.115 13.694 1.77 12.007 1.77c-5.435 0-9.853 4.332-9.856 9.651-.001 1.517.361 2.99 1.05 4.298L2.17 21.73l6.115-1.59-.238.113zM16.92 14.73c-.265-.133-1.57-.775-1.814-.863-.243-.089-.42-.133-.596.133-.177.266-.685.863-.84.1.043-.156.177-.31.353-.532.176-.222.176-.377.089-.533-.089-.155-.596-1.442-.818-1.974-.216-.519-.434-.449-.596-.457-.154-.008-.332-.01-.51-.01-.177 0-.465.067-.708.333-.243.266-.93.909-.93 2.217s.952 2.572 1.084 2.749c.133.177 1.874 2.861 4.539 4.01.634.273 1.13.436 1.516.559.637.203 1.216.174 1.674.106.51-.076 1.57-.642 1.791-1.262.221-.619.221-1.151.155-1.262-.067-.11-.244-.194-.51-.327z"/>
+        </svg>
+    </a>
 
     <script>
-        // Loader
-        window.addEventListener("load", () => {
-            setTimeout(() => document.getElementById("loader").classList.add("loader-hidden"), 1000);
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
 
-        // Funciones para Modales
-        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        
-        // Cerrar al hacer clic fuera del cuadro
-        window.onclick = function(event) {
-            if (event.target.className === 'modal') { event.target.style.display = "none"; }
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerBtn.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        function autocompletarProducto(nombreProducto) {
+            const select = document.getElementById('productoSelect');
+            select.value = nombreProducto;
+            document.getElementById('pedido').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Lógica de enrutamiento inteligente basada en los datos entregados
+        function procesarPedidoWhatsApp(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById('nombreInput').value;
+            const producto = document.getElementById('productoSelect').value;
+            const detalles = document.getElementById('detallesInput').value;
+            const vendedoraSeleccionada = document.querySelector('input[name="vendedora"]:checked').value;
+
+            let celularDestino = "";
+            
+            // Asignación estricta de números de teléfono oficiales
+            if (vendedoraSeleccionada === "Angélica") {
+                celularDestino = "573042875009";
+            } else if (vendedoraSeleccionada === "Liliana") {
+                celularDestino = "573143248100";
+            } else if (vendedoraSeleccionada === "Valery") {
+                celularDestino = "573219585509";
+            }
+
+            const mensajeFinal = `Hola ${vendedoraSeleccionada}, quiero solicitar un pedido desde el sitio web.%0A%0A*Nombre del Cliente:* ${nombre}%0A*Producto:* ${producto}%0A*Detalles / Envío:* ${detalles}`;
+
+            window.open(`https://wa.me/${celularDestino}?text=${mensajeFinal}`, '_blank');
         }
     </script>
-
-    <a href="https://wa.me/573134995760?text=Hola%20KB,%20necesito%20asesoría" class="whatsapp-btn" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" style="width: 30px;">
-    </a>
 
 </body>
 </html>
